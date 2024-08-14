@@ -3,35 +3,35 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 
+export const links = [
+  {
+    name: "Homepage",
+    href: "/",
+  },
+  {
+    name: "Shop",
+    href: "/",
+  },
+  {
+    name: "About",
+    href: "/",
+  },
+  {
+    name: "Contact",
+    href: "/",
+  },
+  {
+    name: "Sign out",
+    href: "/",
+  },
+  {
+    name: "Cart(1)",
+    href: "/",
+  },
+];
+
 const Menu = () => {
   const [open, SetOpen] = useState(false);
-  const links = [
-    {
-      name: "Homepage",
-      href: "/",
-    },
-    {
-      name: "Shop",
-      href: "/",
-    },
-    {
-      name: "About",
-      href: "/",
-    },
-    {
-      name: "Contact",
-      href: "/",
-    },
-    {
-      name: "Sign out",
-      href: "/",
-    },
-    {
-      name: "Cart(1)",
-      href: "/",
-    },
-  ];
-  console.log(open);
 
   return (
     <div>

@@ -45,7 +45,7 @@ const NavbarIcons = () => {
         height={22}
         className="cursor-pointer"
       />
-      <div className="relative cursor-pointer w-[22px]">
+      <div className="relative cursor-pointer">
         <Image
           src="/cart.png"
           alt=""

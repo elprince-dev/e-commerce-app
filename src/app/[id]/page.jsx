@@ -7,7 +7,7 @@ const SinglePage = () => {
   return (
     <div className="px-4 md:px-8 flex flex-col lg:flex-row gap-16 relative">
       {/* Image */}
-      <div className=" w-full lg:w-1/2 lg:sticky top-20 h-max">
+      <div className="w-full lg:w-1/2 lg:sticky top-20 h-max">
         <ProductImages />
       </div>
       {/* text */}

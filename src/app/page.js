@@ -32,7 +32,7 @@ export default async function Home() {
       </div>
       <div className="mt-24 px-4 md:px-8">
         <h1 className="text-2xl">New Products</h1>
-        <ProductList />
+        {/* <ProductList /> */}
       </div>
     </div>
   );

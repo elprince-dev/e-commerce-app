@@ -1,7 +1,7 @@
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
 import Link from "next/link";
-const ProductList = async ({ categoryId, limit = 20 }) => {
+const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
   const wixClient = await wixClientServer();
   const { items } = await wixClient.products
     .queryProducts()

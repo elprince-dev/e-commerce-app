@@ -28,7 +28,9 @@ export default async function Home() {
       </div>
       <div className="mt-24">
         <h1 className="text-2xl px-4 md:px-8 mb-12">Categoris</h1>
-        <CategoryList />
+        <Suspense fallback={"loading"}>
+          <CategoryList />
+        </Suspense>
       </div>
       <div className="mt-24 px-4 md:px-8">
         <h1 className="text-2xl">New Products</h1>

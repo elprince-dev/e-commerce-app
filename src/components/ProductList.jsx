@@ -8,7 +8,7 @@ const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
     .eq("collectionIds", categoryId)
     .limit(limit)
     .find();
-  console.log(items[0]);
+  
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
       {items.map((product) => (

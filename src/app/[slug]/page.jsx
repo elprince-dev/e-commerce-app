@@ -19,6 +19,7 @@ const SinglePage = async ({ params }) => {
   }
 
   const product = items[0];
+
   return (
     <div className="px-4 md:px-8 flex flex-col lg:flex-row gap-16 relative">
       {/* Image */}
@@ -45,7 +46,13 @@ const SinglePage = async ({ params }) => {
         )}
 
         <div className="h-[2px] bg-gray-100" />
-        <CustomizedProduct />
+        {product.variants && product.productOptions && (
+          <CustomizedProduct
+            productId={product._id}
+            variants={product.variants}
+            productOptions={product.productOptions}
+          />
+        )}
         <Add />
         <div className="h-[2px] bg-gray-100" />
         {product.additionalInfoSections.map((section) => (

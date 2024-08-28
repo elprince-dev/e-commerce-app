@@ -15,6 +15,7 @@ const Navbar = () => {
             src="/yesmine-logo/png/logo-no-background.png"
             width={170}
             height={170}
+            alt=""
           />
         </Link>
         <Menu />
@@ -28,6 +29,7 @@ const Navbar = () => {
               src="/yesmine-logo/png/logo-no-background.png"
               width={170}
               height={170}
+              alt=""
             />
           </Link>
           <div className="hidden xl:flex gap-4 ">

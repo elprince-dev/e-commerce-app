@@ -1,18 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Add from "./Add";
 
 const CustomizedProduct = ({ productId, variants, productOptions }) => {
   const [selectedOptions, setSelectedOptions] = useState({});
-  console.log(variants);
+  const [selectedVariant, setSelectedVariant] = useState();
 
-  const handleOptionSelect = (optionType, choice) => {
+  useEffect(() => {
+    const variant = variants.find((v) => {
+      const variantChoices = v.choices;
+      if (!variantChoices) return false;
+      return Object.entries(selectedOptions).every(
+        ([key, value]) => variantChoices[key] === value
+      );
+    });
+    setSelectedVariant(variant);
+  }, [selectedOptions, variants]);
+
+  const handleOptionSelect = (optionName, choice) => {
     setSelectedOptions((prev) => ({
       ...prev,
-      [optionType]: choice,
+      [optionName]: choice,
     }));
   };
-
   const isVariantInStock = (choices) => {
     return variants.some((variant) => {
       const variantChoices = variant.choices;
@@ -75,7 +86,7 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
                       : disabled
                       ? "#D5B263"
                       : "white",
-                    color: selected || disabled ? "white" : "#f35c7a",
+                    color: selected || disabled ? "white" : "black",
                     boxShadow: disabled ? "none" : "",
                     opacity: disabled ? "0.4" : "1",
                   }}
@@ -89,32 +100,13 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
           </ul>
         </div>
       ))}
-      {/* Color */}
-      {/* <h4 className="font-medium">Choose a {option.name.toLowerCase()}</h4>
-      <ul className="flex items-center gap-3">
-        <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-red-500">
-          <div className="absolute w-10 h-10 ring-2 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full" />
-        </li>
-        <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative bg-blue-500"></li>
-        <li className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-not-allowed relative">
-          <div className="absolute w-10 h-[2px] bg-red-400 rotate-45 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rounded-full" />
-        </li>
-      </ul> */}
-
-      {/* Others */}
-
-      {/* <h4 className="font-medium">Choose a size</h4>
-      <ul className="flex items-center gap-3">
-        <li className="ring-1 ring-secondary text-secondary rounded-md py-1 px-4 text-sm cursor-pointer">
-          Small
-        </li>
-        <li className="text-white bg-secondary ring-1 ring-secondary  rounded-md py-1 px-4 text-sm cursor-pointer">
-          Meduim
-        </li>
-        <li className="ring-1 ring-secondary text-white rounded-md py-1 px-4 text-sm cursor-not-allowed bg-secondary opacity-50">
-          Large
-        </li>
-      </ul> */}
+      <Add
+        productId={productId}
+        variantId={
+          selectedVariant?._id || "00000000-0000-0000-0000-000000000000"
+        }
+        stockNumber={selectedVariant?.stock?.quantity || 0}
+      />
     </div>
   );
 };

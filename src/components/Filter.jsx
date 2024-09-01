@@ -1,10 +1,27 @@
+"use client";
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+
 const Filter = () => {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { replace } = useRouter();
+
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target;
+    const params = new URLSearchParams(searchParams);
+    params.set(name, value);
+
+    replace(`${pathname}?${params.toString()}`);
+  };
+
   return (
     <div className="mt-12 flex justify-between">
       <div className="flex gap-6 flex-wrap">
         <select
           name="type"
           id=""
+          onChange={handleFilterChange}
           className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
         >
           <option>Type</option>
@@ -12,12 +29,14 @@ const Filter = () => {
           <option value="digital">Digital</option>
         </select>
         <input
+          onChange={handleFilterChange}
           type="text"
           name="min"
           placeholder="min price"
           className="text-xs rounded-2xl pl-2 w-24 ring-1 ring-gray-400"
         />
         <input
+          onChange={handleFilterChange}
           type="text"
           name="max"
           placeholder="max price"
@@ -25,6 +44,7 @@ const Filter = () => {
         />
         {/* TODO: Filter Categories */}
         <select
+          onChange={handleFilterChange}
           name="cat"
           className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
         >
@@ -42,6 +62,7 @@ const Filter = () => {
       </div>
       <div className="">
         <select
+          onChange={handleFilterChange}
           name="sort"
           id=""
           className="py-2 px-4 rounded-2xl text-xs font-medium bg-white ring-1 ring-gray-400"

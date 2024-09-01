@@ -3,12 +3,33 @@ import Image from "next/image";
 import Link from "next/link";
 const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
   const wixClient = await wixClientServer();
-  const { items } = await wixClient.products
+  const PRODUCT_PER_PAGE = 8;
+  const productQuery = wixClient.products
     .queryProducts()
+    .startsWith("name", searchParams?.name || "")
+    .hasSome(
+      "productType",
+      searchParams?.type ? [searchParams.type] : ["physical", "digital"]
+    )
+    .gt("priceData.price", searchParams?.min || 0)
+    .lt("priceData.price", searchParams?.max || 9999999)
     .eq("collectionIds", categoryId)
-    .limit(limit)
-    .find();
-  
+    .limit(limit || PRODUCT_PER_PAGE);
+  // .find();
+
+  if (searchParams?.sort) {
+    const [sortType, sortBy] = searchParams.sort.split(" ");
+
+    if (sortType === "asc") {
+      productQuery.ascending(sortBy);
+    }
+    if (sortType === "desc") {
+      productQuery.descending(sortBy);
+    }
+  }
+
+  const { items } = await productQuery.find();
+
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
       {items.map((product) => (

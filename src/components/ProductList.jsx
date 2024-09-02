@@ -1,7 +1,8 @@
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
 import Link from "next/link";
-const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
+import Pagination from "./Pagination";
+const ProductList = async ({ categoryId, limit, searchParams }) => {
   const wixClient = await wixClientServer();
   const PRODUCT_PER_PAGE = 8;
   const productQuery = wixClient.products
@@ -14,7 +15,12 @@ const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
     .gt("priceData.price", searchParams?.min || 0)
     .lt("priceData.price", searchParams?.max || 9999999)
     .eq("collectionIds", categoryId)
-    .limit(limit || PRODUCT_PER_PAGE);
+    .limit(limit || PRODUCT_PER_PAGE)
+    .skip(
+      searchParams?.page
+        ? parseInt(searchParams.page) * (limit || PRODUCT_PER_PAGE)
+        : 0
+    );
   // .find();
 
   if (searchParams?.sort) {
@@ -28,11 +34,11 @@ const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
     }
   }
 
-  const { items } = await productQuery.find();
+  const res = await productQuery.find();
 
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
-      {items.map((product) => (
+      {res.items.map((product) => (
         <Link
           key={product._id}
           href={"/" + product.slug}
@@ -67,6 +73,11 @@ const ProductList = async ({ categoryId, limit = 20, searchParams }) => {
           </button>
         </Link>
       ))}
+      <Pagination
+        currentPage={res.currentPage || 0}
+        hasPrev={res.hasPrev()}
+        hasNext={res.hasNext()}
+      />
     </div>
   );
 };

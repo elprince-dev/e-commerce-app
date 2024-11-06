@@ -3,7 +3,9 @@ import Link from "next/link";
 import React from "react";
 import Menu from "./Menu";
 import SearchBar from "./SearchBar";
-import NavbarIcons from "./NavbarIcons";
+import dynamic from "next/dynamic";
+// import NavbarIcons from "./NavbarIcons";
+const NavbarIcons = dynamic(()=> import("./NavbarIcons"), {ssr: false})
 
 const Navbar = () => {
   return (

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@wix/ecom": "^1.0.804",
     "@wix/sdk": "^1.12.12",
     "@wix/stores": "^1.0.179",
     "js-cookie": "^3.0.5",

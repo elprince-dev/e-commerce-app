@@ -1,9 +1,12 @@
 "use client";
 
+import { useWixClient } from "@/hooks/useWixClient";
 import Image from "next/image";
 
 const CartModal = () => {
   const cartItems = true;
+  const wixClient = useWixClient()
+  // const response = await
   return (
     <div className="w-max absolute p-4 rounded-md shadow-md bg-white top-12 right-0 flex flex-col gap-6 z-20">
       {!cartItems ? (

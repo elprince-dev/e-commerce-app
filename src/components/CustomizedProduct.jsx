@@ -46,7 +46,7 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
         <div className="flex flex-col gap-4" key={option.name}>
           <h4 className="font-medium">Choose a {option.name}</h4>
           <ul className="flex items-center gap-3">
-            {option.choices?.map((choice) => {
+            {option.choices?.map((choice, index) => {
               const disabled = !isVariantInStock({
                 ...selectedOptions,
                 [option.name]: choice.description,
@@ -60,7 +60,7 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
                 : () => handleOptionSelect(option.name, choice.description);
 
               return option.name === "Color" ? (
-                <li key={choice}
+                <li key={index}
                   className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative"
                   style={{
                     backgroundColor: choice.value,
@@ -77,7 +77,7 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
                   )}
                 </li>
               ) : (
-                <li key={choice}
+                <li key={index}
                   className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm"
                   style={{
                     cursor: disabled ? "not-allowed" : "pointer",

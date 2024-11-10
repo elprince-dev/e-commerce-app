@@ -45,8 +45,8 @@ const Menu = () => {
       />
       {open && (
         <div className="absolute bg-black text-white left-0 top-20 w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center gap-8 text-xl z-10">
-          {links.map((link) => (
-            <Link href={link.href}>{link.name}</Link>
+          {links.map((link, index) => (
+            <Link href={link.href} key={index}>{link.name}</Link>
           ))}
         </div>
       )}

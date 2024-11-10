@@ -3,7 +3,7 @@ import { create } from 'zustand'
 // import { WixClient } from "@/context/wixContext";
 
 export const useCartStore = create((set) => ({
-  cart: 0,
+  cart: [],
   isLoading: true,
   counter:0,
   getCart: async (wixClient) => {

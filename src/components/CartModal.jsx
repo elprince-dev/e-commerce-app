@@ -9,7 +9,7 @@ const CartModal = () => {
   const cartItems = true;
   const wixClient = useWixClient()
   
-  // console.dir(wixClient)
+  console.dir(wixClient)
 
   const {cart, getCart} = useCartStore()
   useEffect(()=>{

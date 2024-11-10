@@ -1,7 +1,7 @@
 import { createClient, OAuthStrategy } from "@wix/sdk"
 import { NextResponse } from "next/server"
 
-const middleware = async (request) => {
+export const middleware = async (request) => {
 
     const cookies = request.cookies
     const response = NextResponse.next()
@@ -19,5 +19,3 @@ const middleware = async (request) => {
         });
     return response
 }
-
-export default middleware

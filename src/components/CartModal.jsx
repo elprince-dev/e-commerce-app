@@ -1,12 +1,21 @@
 "use client";
-
+import { useCartStore } from "@/hooks/useCartStore";
 import { useWixClient } from "@/hooks/useWixClient";
 import Image from "next/image";
+import { useEffect } from "react";
+import { currentCart } from "@wix/ecom";
 
 const CartModal = () => {
   const cartItems = true;
   const wixClient = useWixClient()
-  // const response = await
+  
+  // console.dir(wixClient)
+
+  const {cart, getCart} = useCartStore()
+  useEffect(()=>{
+    getCart(wixClient)
+  },[wixClient, getCart])
+  console.log(cart)
   return (
     <div className="w-max absolute p-4 rounded-md shadow-md bg-white top-12 right-0 flex flex-col gap-6 z-20">
       {!cartItems ? (

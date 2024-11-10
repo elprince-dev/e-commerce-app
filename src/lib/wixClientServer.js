@@ -17,7 +17,7 @@ export const wixClientServer = async () => {
     modules: {
       products,
       collections,
-      currentCart
+      currentCart,
     },
     auth: OAuthStrategy({
       clientId: process.env.NEXT_PUBLIC_WIX_CLIENT_ID,

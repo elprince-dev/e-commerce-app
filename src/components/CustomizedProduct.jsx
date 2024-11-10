@@ -60,7 +60,7 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
                 : () => handleOptionSelect(option.name, choice.description);
 
               return option.name === "Color" ? (
-                <li
+                <li key={choice}
                   className="w-8 h-8 rounded-full ring-1 ring-gray-300 relative"
                   style={{
                     backgroundColor: choice.value,
@@ -77,7 +77,7 @@ const CustomizedProduct = ({ productId, variants, productOptions }) => {
                   )}
                 </li>
               ) : (
-                <li
+                <li key={choice}
                   className="ring-1 ring-lama text-lama rounded-md py-1 px-4 text-sm"
                   style={{
                     cursor: disabled ? "not-allowed" : "pointer",

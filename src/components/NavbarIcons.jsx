@@ -1,10 +1,11 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CartModal from "./CartModal";
 import { useWixClient } from "@/hooks/useWixClient";
+import { useCartStore } from "@/hooks/useCartStore";
 
 const NavbarIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -51,6 +52,12 @@ const NavbarIcons = () => {
     setIsProfileOpen(false);
     router.push(logoutUrl);
   }
+  
+  const {cart, counter, getCart} = useCartStore()
+  useEffect(()=>{
+    getCart(wixClient)
+  },[wixClient, getCart])
+
   return (
     <div className="flex items-center gap-4 xl:gap-6 relative">
       <Image
@@ -89,7 +96,7 @@ const NavbarIcons = () => {
           className="cursor-pointer"
         />
         <div className="absolute -top-4 -right-4 w-6 h-6 bg-secondary rounded-full text-white text-sm flex justify-center items-center">
-          2
+          {counter}
         </div>
       </div>
 

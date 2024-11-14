@@ -73,7 +73,7 @@ const NavbarIcons = () => {
 
       {isProfileOpen && (
         <div className=" absolute bg-white p-4 rounded-md top-12 left-0 text-sm shadow-md z-20">
-          <Link href="/">Profile</Link>
+          <Link href="/profile">Profile</Link>
           <div className="mt-2 cursor-pointer" onClick={handleLogout}> {isLoading? "Signing out ...": "Sign out"}</div>
         </div>
       )}

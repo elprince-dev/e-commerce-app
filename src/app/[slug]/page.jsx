@@ -1,9 +1,10 @@
 import Add from "@/components/Add";
 import CustomizedProduct from "@/components/CustomizedProduct";
 import ProductImages from "@/components/ProductImages";
+import Reviews from "@/components/Reviews";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { notFound } from "next/navigation";
-import React from "react";
+import { Suspense } from "react";
 
 const SinglePage = async ({ params }) => {
   const { slug } = params;
@@ -19,6 +20,9 @@ const SinglePage = async ({ params }) => {
   }
 
   const product = items[0];
+  const reviewRes = await fetch(`https://api.fera.ai/v3/public/reviews?product.id=${product._id}&public_key=${process.env.NEXT_PUBLIC_FERA_ID}`)
+  const reviews = await reviewRes.json()
+  console.log(reviews)
 
   return (
     <div className="px-4 md:px-8 flex flex-col lg:flex-row gap-16 relative">
@@ -67,6 +71,12 @@ const SinglePage = async ({ params }) => {
             <p>{section.description}</p>
           </div>
         ))}
+        <div className="h-[2px] bg-gray-100" />
+        {/* REVIEWS */}
+        <h1 className="text-2xl">User Reviews</h1>
+        <Suspense fallback="Loading...">
+          <Reviews productId={product._id} />
+        </Suspense>
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ import { useEffect, Suspense } from "react";
 import Confetti from "react-confetti";
 
 const SuccessPageContent = () => {
+  <h1>success</h1>
   // const searchParams = useSearchParams();
   // const router = useRouter();
 

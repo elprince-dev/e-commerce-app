@@ -1,13 +1,13 @@
 "use client";
-import Confetti from "react-confetti";
+
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
+import Confetti from "react-confetti";
 
-
-const SuccessPage = () => {
-
+const SuccessPageContent = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
+
   const orderId = searchParams.get("orderId");
 
   useEffect(() => {
@@ -16,11 +16,11 @@ const SuccessPage = () => {
     const timer = setTimeout(() => {
       router.push("/orders/" + orderId);
     }, 5000);
-     return () => {
+
+    return () => {
       clearTimeout(timer);
     };
   }, [orderId, router]);
-
 
   return (
     <div className="flex flex-col gap-6 items-center justify-center h-[calc(100vh-180px)]">
@@ -31,7 +31,13 @@ const SuccessPage = () => {
       </h2>
       <h3 className="">You are being redirected to the order page...</h3>
     </div>
-  )
-}
+  );
+};
 
-export default SuccessPage
+const SuccessPage = () => (
+  <Suspense fallback={<div>Loading...</div>}>
+    <SuccessPageContent />
+  </Suspense>
+);
+
+export default SuccessPage;

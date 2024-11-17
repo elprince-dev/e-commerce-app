@@ -13,6 +13,7 @@ const Footer = () => {
               src="/yesmine-logo/png/logo-no-background.png"
               width={170}
               height={170}
+              alt=""
             />
           </Link>
           <p>10 Birchall Lane, St Thomas, ON, N5J 0J1</p>

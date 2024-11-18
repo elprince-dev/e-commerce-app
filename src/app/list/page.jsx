@@ -7,9 +7,19 @@ import React, { Suspense } from "react";
 const ListPage = async ({ searchParams }) => {
   const wixClient = await wixClientServer();
 
-  const cat = await wixClient.collections.getCollectionBySlug(
-    searchParams.cat || "all-products"
-  );
+  let cat;
+  try {
+    cat = await wixClient.collections.getCollectionBySlug(
+      searchParams.cat || "all-products"
+    );
+  } catch (error) {
+    console.error("Failed to fetch collection:", error);
+    cat = { collection: { name: "Default Products", _id: "" } };
+  }
+
+  // const cat = await wixClient.collections.getCollectionBySlug(
+  //   searchParams.cat || "all-products"
+  // );
   return (
     <div className="px-4 md:px-8">
       {/* Campaign */}

@@ -23,7 +23,7 @@ const ListPage = async ({ searchParams }) => {
           </button>
         </div>
         <div className="relative w-1/3">
-          <Image src="/woman.png" alt="" fill className="object-contain" />
+          <Image src="/woman.png" alt="Promotional banner woman" fill className="object-contain" />
         </div>
       </div>
       <Filter />
@@ -34,7 +34,7 @@ const ListPage = async ({ searchParams }) => {
       <Suspense fallback="loading">
         <ProductList
           categoryId={
-            cat.collection._id || "00000000-000000-000000-000000000001 "
+            cat.collection._id || "00000000-000000-000000-000000000001"
           }
           searchParams={searchParams}
         />

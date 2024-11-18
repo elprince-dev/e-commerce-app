@@ -39,7 +39,7 @@ const Navbar = () => {
             <Link href="/">Shop</Link>
             <Link href="/">About</Link>
             <Link href="/">Contact</Link>
-            <Link href="/" className="whitespace-nowrap">
+            <Link href="/login" className="whitespace-nowrap">
               Sign out
             </Link>
             <Link href="/">Cart</Link>

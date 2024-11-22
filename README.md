@@ -18,10 +18,6 @@
     <img src="https://img.shields.io/badge/TailwindCSS-38B2AC.svg?style=flat&logo=tailwind-css&logoColor=white" alt="TailwindCSS">
 </p>
 
-<!-- <p align="center">
-	<em>Live on</em> <a href="https://yesmine.vercel.app">writewell.vercel.app </a>
-</p> -->
-<!-- <p align="center"> <em>Watch the demo</em> <a href="https://www.youtube.com/watch?v=RGtlUeoG3tc">HERE</a></p> -->
 
 <hr>
 
